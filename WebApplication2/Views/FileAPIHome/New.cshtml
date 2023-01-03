@@ -46,28 +46,59 @@
             </tr>
             <tr>
                 <td>File</td>
-                <td><input onclick="uploadFile()" type="file" id="ExcelFile" name="ExcelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required /></td>
+                <td><input type="file" id="ExcelFile" name="ExcelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required ></td>
             </tr>
       </table>
     </form>
+    <input type="submit" onclick="uploadFile()"></button>
+    <br/>
+    <span id="message"></span>
   </body>
 </html>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 <script type="text/javascript">
+function validStr (parameter){
+  if (parameter != null && typeof(parameter) === 'string')
+    return true;
+  return false;
+}
 function uploadFile() {
     var formData = new FormData();
     var fileInput = document.getElementById('ExcelFile');
     if (fileInput.files[0]) {
+      //add validate data type and required here
+      // check file extension 
+      // restrict file size later
+      // add star next to labels
+      // add regex 
+      try {
+        let ProjectName = $("#ProjectName").val();
+        let ProjectID = $("#ProjectID").val();
+        let ReportTitle = $("#ReportTitle").val();
+        let ReportID = $("#ReportID").val();
+        let DevelopSummaryExcel = $("#DevelopSummaryExcel").val();
+        let DevelopReport = $("#DevelopReport").val();
+        let Email = $("#Email").val();
+        
+        var message = document.getElementById("message");
+
+        if (!validStr(ProjectName) || !validStr(ProjectID) || !validStr(ReportTitle) || !validStr(ReportID) || !validStr(Email)){ 
+          message.innerHTML = "Please make sure to fill all fields.";
+          message.style.color = "red";
+        } 
+  
+        if (DevelopSummaryExcel == null || DevelopReport == null){
+          message.innerHTML = "Please specify which documents you want to generate.";
+          message.style.color = "red";
+        }
         formData.append("ExcelFile", fileInput.files[0]);
-        formData.append("ProjectID","sdsds");
-        formData.append("ProjectName","sdsds");
-        formData.append("ReportID","sdsds");
-
-        formData.append("ReportTitle","sdsds");
-        formData.append("Email","sdsds");
-
-        formData.append("DevelopSummaryExcel","true");
-        formData.append("DevelopReport","true")
+        formData.append("ProjectID",ProjectID);
+        formData.append("ProjectName",ProjectName);
+        formData.append("ReportID",ReportID);
+        formData.append("ReportTitle",ReportTitle);
+        formData.append("Email",Email);
+        formData.append("DevelopSummaryExcel",DevelopSummaryExcel);
+        formData.append("DevelopReport",DevelopReport)
         
         axios({
                 method: 'post',
@@ -80,12 +111,23 @@ function uploadFile() {
             })
             .then(response => {
                 console.log(response);
+                var message = document.getElementById('message');
+                message.innerHTML = "Success"; 
+                message.style.color = "green";
             })
             .catch(error => {
+                 message.innerHTML = "Error"
+                message.style.color = "red";
                 console.error(error);
             });
+
+    }
+    catch(error){
+      var message = document.getElementById("message");
+      message.innerHTML = error;
+      message.style.color = "red";
     }
 }
+}
+
 </script>
-@* <input type="file" id="fileInput" name="file"><br>
-<input type="button" value="submit" onclick="uploadFile()"> *@

@@ -49,7 +49,7 @@ namespace WebApplication2
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=FileAPIHome}/{action=New}/");
 
             app.Run();
         }
