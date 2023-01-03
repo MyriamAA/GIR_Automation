@@ -20,30 +20,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FileAPIHome" asp-action="New">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Job" asp-action="Index">Schedule a job</a>
-                        </li>
-                       
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Index">Schedule a project</a>
-                        </li>
-                        
-                                 <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="NewJob" asp-action="Index">New job</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FileAPIHome" asp-action="Index">File Api</a>
-                        </li> *@
-                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FileAPIHome" asp-action="Other">Schedule a job</a>
-                        </li> 
+
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FileAPIHome" asp-action="New">NEW</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FileAPIHome" asp-action="New">Schedule a job</a>
                         </li> 
                     </ul>
                     <p class="nav navbar-text">Hello, @User.Identity?.Name!</p>
