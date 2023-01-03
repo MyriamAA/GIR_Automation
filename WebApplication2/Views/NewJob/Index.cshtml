@@ -1,0 +1,117 @@
+﻿@model WebApplication2.Models.NewProject
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <form asp-controller="newjob" asp-action="save" method="post" enctype="multipart/form-data">
+        <table id="tblProject" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>Project Name</td>
+                <td>
+                    <input name="ProjectName" id="ProjectName" type="text" asp-for="ProjectName" />
+                </td>
+            </tr>
+            <tr>
+                <td>Project ID</td>
+                <td>
+                    <input name="ProjectID" id="ProjectID" type="text" asp-for="ProjectID" />
+                </td>
+            </tr>
+            <tr>
+                <td>Report Title</td>
+                <td>
+                    <input name="ReportTitle" id="ReportTitle"  type="text" asp-for="ReportTitle" />
+                </td>
+            </tr>
+             <tr>
+                <td>Report ID</td>
+                <td>
+                    <input name="ReportID" id="ReportID" type="text" asp-for="ReportID" />
+                </td>
+            </tr>
+             <tr>
+                <td>Email</td>
+                <td>
+                    <input name="Email" id="Email" type="email" asp-for="Email" />
+                </td>
+            </tr>
+             <tr>
+                <td>Develop an excel sheet?</td>
+                <td>
+                    <input name="DevelopSummaryExcel" id="DevelopSummaryExcel" type="checkbox" asp-for="DevelopSummaryExcel" />
+                </td>
+            </tr>
+                         <tr>
+                <td>Develop an summary report?</td>
+                <td>
+                    <input name="DevelopReport" id="DevelopReport" type="checkbox" asp-for="DevelopReport" />
+                </td>
+            </tr>
+            <tr>
+                <td>Excel file</td>
+                <td>
+                    <input id="ExcelFile" type="file" name="ExcelFile" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input id="btnSave" type="submit" value="Save" /></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+@*@section Scripts {
+    <script type="text/javascript">{
+        LoadData();
+
+        $("#btnSave").click(function ()}
+        var project = {};
+        project.ProjectName = $("#ProjectName").val();
+        project.ProjectID = $("#ProjectID").val();
+        project.ReportID = $("#ReportID").val();
+        project.ReportTitle = $("#ReportTitle").val();
+        project.DevelopSummaryExcel = $("#DevelopSummaryExcel").val();
+        project.DevelopReport = $("#DevelopReport").val();
+        project.ExcelFile = $("#ExcelFile").val();
+
+        $.ajax({
+            type: "POST",
+            url: '$Url.Action("Save")',
+            data: '{project: }' + JSON.stringify(project) + '}',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            successL function (){
+                LoadData();
+            },
+            error: function (){
+                alert("Error");
+            }
+        });
+        return false;
+        });
+        });
+        
+        function LoadData(){
+            ${"#tblProject tbody tr").remove();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("getProject")',
+                dataType: 'text',
+                success: function(){
+                    alert("Worked");
+                },
+                error: function(){
+                    alert("Error");
+                }
+
+            });
+            return false;
+        }
+    </script>
+}*@

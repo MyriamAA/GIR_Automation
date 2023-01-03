@@ -1,0 +1,56 @@
+﻿<h1>Buffered File Upload</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label  class="control-label">Project Name</label>
+                <input type="text" name="ProjectName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Project ID</label>
+                <input type="text" name="ProjectID" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Report Title</label>
+                <input type="text" name="ReportTitle" class="form-control" />
+            </div>
+            <div class="form-group">
+
+                <label class="control-label">Report ID</label>
+                <input type="text" name="ReportID" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="email" name="Email" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Develop a summary excel?</label>
+                <input type="checkbox" name="DevelopSummaryExcel" class="form-check-input" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Develop a report?</label>
+                <input type="checkbox" name="DevelopReport" class="form-check-input" />
+            </div>
+
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert" style="margin-top:20px">
+        @ViewBag.Message
+    </div>
+}

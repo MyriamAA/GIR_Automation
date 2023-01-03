@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Project ID:</td>
+            <td><input type="text" id="ProjectID" /></td>
+        </tr>
+        <tr>
+            <td>Project Name:</td>
+            <td><input type="text" id="ProjectName" /></td>
+        </tr>
+        <tr>
+            <td>Report Title:</td>
+            <td><input type="text" id="ReportTitle" /></td>
+        </tr>
+        <tr>
+            <td>Report ID:</td>
+            <td><input type="text" id="ReportID" /></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" id="Email" /></td>
+        </tr>
+        <tr>
+            <td>Develop a summary excel?</td>
+            <td><input type="checkbox" id="DevelopSummaryExcel" /></td>
+        </tr>
+        <tr>
+            <td>Develop a report?</td>
+            <td><input type="checkbox" id="DevelopReport" /></td>
+        </tr>
+        <tr>
+            <td>File:</td>
+            <td><input type="file" id="file" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" id="btnUpload" value="Upload" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><progress id="fileProgress" style="display: none"></progress></td>
+        </tr>
+    </table>
+    <hr />
+    <span id="lblMessage" style="color: Green"></span>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btnUpload", function () {
+            var formData = new FormData();
+            formData.append("ProjectName", $("#ProjectName").val());
+            formData.append("ProjectID", $("#ProjectID").val());
+            formData.append("ReportTitle", $("#ReportTitle").val());
+            formData.append("ReportID", $("#ReportID").val());
+            formData.append("DevelopSummaryExcel", $("#DevelopSummaryExcel").val());
+            formData.append("DevelopReport", $("#DevelopReport").val());
+            formData.append("Email", $("#Email").val());
+            formData.append("file", $("#file")[0].files[0]);
+            $.ajax({
+                url: '/api/FileAPI/UploadFiles2',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (ProjectName) {
+                    $("#fileProgress").hide();
+                    $("#lblMessage").html("<b>" + ProjectName + "</b> has been queud.");
+                },
+                xhr: function () {
+                    var fileXhr = $.ajaxSettings.xhr();
+                    if (fileXhr.upload) {
+                        $("progress").show();
+                        fileXhr.upload.addEventListener("progress", function (e) {
+                            if (e.lengthComputable) {
+                                $("#fileProgress").attr({
+                                    value: e.loaded,
+                                    max: e.total
+                                });
+                            }
+                        }, false);
+                    }
+                    return fileXhr;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
