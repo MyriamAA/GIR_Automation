@@ -11,5 +11,8 @@ namespace WebApplication2.Controllers
         public IActionResult Other(){
           return View();
         }
+        public IActionResult New(){
+          return View();
+        }
     }
 }

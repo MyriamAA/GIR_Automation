@@ -9,106 +9,101 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
-
+<body>
     <form>
-       <table id="tblProject" cellpadding="2" cellspacing="2">
-        <tr>        
-           <td>Project ID</td>
-           <td>
-           <input type="text" id="ProjectID" class="form-control" name="ProjectID" required/>
-            </td>    
-         </tr>
-         <tr>
-             <td>Project Name</td>
-             <td>
-                <input type="text" id="ProjectName" class="form-control" name="ProjectName" required />
-               </td>
-          </tr>
-         <tr>
-           <td>Report Title</td>
-           <td>
-                <input type="text" id="ReportTitle" class="form-control" name="ReportTitle" required />
-            </td>    
-        </tr>
-        <tr>
-            <td>Report ID</td>
-            <td>
-                <input type="text" id="ReportID" class="form-control" required />
-            </td>
+        <table id="tblProject" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>Project ID</td>
+                <td>
+                    <input type="text" id="ProjectID" class="form-control" name="ProjectID" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Project Name</td>
+                <td>
+                    <input type="text" id="ProjectName" class="form-control" name="ProjectName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Report Title</td>
+                <td>
+                    <input type="text" id="ReportTitle" class="form-control" name="ReportTitle" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Report ID</td>
+                <td>
+                    <input type="text" id="ReportID" class="form-control" required />
+                </td>
 
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" id="Email" class="form-control" required /></td>
-        </tr>
-        <tr>
-            <td>Develop a summary excel?</td>
-            <td><input type="checkbox" id="DevelopSummaryExcel" required class="form-check-input" checked/></td>
-        </tr>
-        <tr>
-            <td>Develop a report?</td>
-            <td><input type="checkbox" id="DevelopReport" required class="form-check-input" checked /></td>
-        </tr>
-        <tr>
-            <td>File:</td>
-            <td><input type="file" id="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" id="btnUpload" value="Send" /></td>
-        </tr>
-   
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" id="Email" class="form-control" required /></td>
+            </tr>
+            <tr>
+                <td>Develop a summary excel?</td>
+                <td><input type="checkbox" id="DevelopSummaryExcel" required class="form-check-input" checked /></td>
+            </tr>
+            <tr>
+                <td>Develop a report?</td>
+                <td><input type="checkbox" id="DevelopReport" required class="form-check-input" checked /></td>
+            </tr>
+            <tr>
+                <td>File:</td>
+                <td><input type="file" id="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" id="btnUpload" value="Send" OnClientClicking="OnClientClicking" /></td>
+            </tr>
+        </table>
     </form>
-         <tr>
-            <td colspan="2"><progress id="fileProgress" style="display: none"></progress></td>
-        </tr>
 
-    <hr />
 
     <span id="lblMessage" style="color: Green"></span>
+</body>
+</html>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $("body").on("click", "#btnUpload", function () {
             var formData = new FormData();
             var fileInput = document.getElementById('file');
-            formData.append("ProjectName", $("#ProjectName").val());
-            formData.append("ProjectID", $("#ProjectID").val());
-            formData.append("ReportTitle", $("#ReportTitle").val());
-            formData.append("ReportID", $("#ReportID").val());
-            formData.append("DevelopSummaryExcel", $("#DevelopSummaryExcel").val());
-            formData.append("DevelopReport", $("#DevelopReport").val());
-            formData.append("Email", $("#Email").val());
-            formData.append("ExcelFile", $("#file")[0].files[0]);
-        $("progress").show();
-            axios({
-                url: 'http://localhost:8010/GIRReport',
-                method: 'POST',
-                data: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
+            if (fileInput.files[0]) {
+                formData.append("ProjectName", $("#ProjectName").val());
+                formData.append("ProjectID", $("#ProjectID").val());
+                formData.append("ReportTitle", $("#ReportTitle").val());
+                formData.append("ReportID", $("#ReportID").val());
+                formData.append("DevelopSummaryExcel", $("#DevelopSummaryExcel").val());
+                formData.append("DevelopReport", $("#DevelopReport").val());
+                formData.append("Email", $("#Email").val());
+                formData.append("ExcelFile", fileInput.files[0]);
 
-                      })
+                axios({
+                    url: 'http://localhost:8010/GIRReport',
+                    method: 'POST',
+                    data: formData,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'multipart/form-data'
+                    },
 
-        //success: function (ProjectName) {
-        //    $("#fileProgress").hide();
-        //    $("#lblMessage").html("<b>" + ProjectName + "</b> has been queud.");
-        //},
-            .then(response => {
-                $("#fileProgress").hide();
-                document.getElementById("lblMessage").style.color = "green";
-              $("#lblMessage").html("<b>" + formData.get("ProjectName") + "</b> has been queud.");
-              
-            })
-            .catch(error => {
-              
-                document.getElementById("lblMessage").style.color = "red";
-                $("#lblMessage").html("<b> Error </b>");
+                })
 
-                console.error(error);
-            });
-    });
+                    //success: function (ProjectName) {
+                    //    $("#fileProgress").hide();
+                    //    $("#lblMessage").html("<b>" + ProjectName + "</b> has been queud.");
+                    //},
+                    .then(response => {
+                        console.log(response);
 
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        })
+
+        
     </script>
-</html>

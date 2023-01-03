@@ -1,0 +1,91 @@
+@{
+    ViewData["Title"] = "New";
+}
+
+
+<html>
+  <body>
+    <form>
+      <table id="tblProject" cellpadding="2" cellspacing="2">
+<tr>
+                <td>Project ID</td>
+                <td>
+                    <input type="text" id="ProjectID" class="form-control" name="ProjectID" required />
+                </td>
+            </tr>
+                 <tr>
+                <td>Project Name</td>
+                <td>
+                    <input type="text" id="ProjectName" class="form-control" name="ProjectName" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Report Title</td>
+                <td>
+                    <input type="text" id="ReportTitle" class="form-control" name="ReportTitle" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Report ID</td>
+                <td>
+                    <input type="text" id="ReportID" class="form-control" required />
+                </td>
+
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" id="Email" class="form-control" required /></td>
+            </tr>
+            <tr>
+                <td>Develop a summary excel?</td>
+                <td><input type="checkbox" id="DevelopSummaryExcel" required class="form-check-input" checked /></td>
+            </tr>
+            <tr>
+                <td>Develop a report?</td>
+                <td><input type="checkbox" id="DevelopReport" required class="form-check-input" checked /></td>
+            </tr>
+            <tr>
+                <td>Excel File:</td>
+                <td><input onclick="uploadFile()" type="file" id="ExcelFile" name="ExcelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required /></td>
+            </tr>
+      </table>
+    </form>
+  </body>
+</html>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+<script type="text/javascript">
+function uploadFile() {
+    var formData = new FormData();
+    var fileInput = document.getElementById('ExcelFile');
+    if (fileInput.files[0]) {
+        formData.append("ExcelFile", fileInput.files[0]);
+        formData.append("ProjectID","sdsds");
+        formData.append("ProjectName","sdsds");
+        formData.append("ReportID","sdsds");
+
+        formData.append("ReportTitle","sdsds");
+        formData.append("Email","sdsds");
+
+        formData.append("DevelopSummaryExcel","true");
+        formData.append("DevelopReport","true")
+        
+        axios({
+                method: 'post',
+                url: 'http://localhost:8010/GIRReport',
+                data: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
+</script>
+@* <input type="file" id="fileInput" name="file"><br>
+<input type="button" value="submit" onclick="uploadFile()"> *@
