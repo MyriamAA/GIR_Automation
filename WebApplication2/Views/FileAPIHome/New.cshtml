@@ -1,17 +1,16 @@
 @{
-    ViewData["Title"] = "New";
+    ViewData["Title"] = "Queue a Job";
 }
-
 
 <html>
   <body>
     <form>
       <table id="tblProject" cellpadding="2" cellspacing="2">
-<tr>
-                <td>Project ID</td>
-                <td>
-                    <input type="text" id="ProjectID" class="form-control" name="ProjectID" required />
-                </td>
+        <tr>
+          <td>Project ID</td>
+          <td>
+            <input type="text" id="ProjectID" class="form-control" name="ProjectID" required />
+          </td>
             </tr>
                  <tr>
                 <td>Project Name</td>
@@ -45,8 +44,8 @@
                 <td><input type="checkbox" id="DevelopReport" required class="form-check-input" checked /></td>
             </tr>
             <tr>
-                <td>File</td>
-                <td><input type="file" id="ExcelFile" name="ExcelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required ></td>
+              <td>File</td>
+              <td><input type="file" id="ExcelFile" name="ExcelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"required ></td>
             </tr>
       </table>
     </form>
@@ -55,79 +54,101 @@
     <span id="message"></span>
   </body>
 </html>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 <script type="text/javascript">
-function validStr (parameter){
+function validStr(parameter){
   if (parameter != null && typeof(parameter) === 'string')
     return true;
   return false;
 }
+
+function validFile(fileName){
+  const arr = ["csv","xls","xlsx"];
+  let extension = fileName.split('.').pop();
+  for (let i=0; i<arr.length; i++){
+	  if (extension==arr[i])
+      return true;
+  }  
+  return false;
+}
 function uploadFile() {
+  try {
     var formData = new FormData();
     var fileInput = document.getElementById('ExcelFile');
-    if (fileInput.files[0]) {
-      //add validate data type and required here
-      // check file extension 
+    var message = document.getElementById("message");
+    const fileName = (fileInput.files[0]).name;
+
+    if (fileInput.files[0] && validFile(fileName)) {
+
+      // add validate data type and required here done
+      // check file extension done
       // restrict file size later
       // add star next to labels
-      // add regex 
-      try {
-        let ProjectName = $("#ProjectName").val();
-        let ProjectID = $("#ProjectID").val();
-        let ReportTitle = $("#ReportTitle").val();
-        let ReportID = $("#ReportID").val();
-        let DevelopSummaryExcel = $("#DevelopSummaryExcel").val();
-        let DevelopReport = $("#DevelopReport").val();
-        let Email = $("#Email").val();
-        
-        var message = document.getElementById("message");
+      // add regex to email
+      // add limit 
+    
+      const ProjectName = $("#ProjectName").val();
+      const ProjectID = $("#ProjectID").val();
+      const ReportTitle = $("#ReportTitle").val();
+      const ReportID = $("#ReportID").val();
+      const DevelopSummaryExcel = $("#DevelopSummaryExcel").val();
+      const DevelopReport = $("#DevelopReport").val();
+      const Email = $("#Email").val();
 
-        if (!validStr(ProjectName) || !validStr(ProjectID) || !validStr(ReportTitle) || !validStr(ReportID) || !validStr(Email)){ 
-          message.innerHTML = "Please make sure to fill all fields.";
-          message.style.color = "red";
-        } 
+      if (!validStr(ProjectName) || !validStr(ProjectID) || !validStr(ReportTitle) || !validStr(ReportID) || !validStr(Email)){ 
+        message.innerHTML = "Please make sure to fill all fields.";
+        message.style.color = "red";
+        return;
+      } 
   
-        if (DevelopSummaryExcel == null || DevelopReport == null){
-          message.innerHTML = "Please specify which documents you want to generate.";
-          message.style.color = "red";
-        }
-        formData.append("ExcelFile", fileInput.files[0]);
-        formData.append("ProjectID",ProjectID);
-        formData.append("ProjectName",ProjectName);
-        formData.append("ReportID",ReportID);
-        formData.append("ReportTitle",ReportTitle);
-        formData.append("Email",Email);
-        formData.append("DevelopSummaryExcel",DevelopSummaryExcel);
-        formData.append("DevelopReport",DevelopReport)
-        
-        axios({
-                method: 'post',
-                url: 'http://localhost:8010/GIRReport',
-                data: formData,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                },
-            })
-            .then(response => {
-                console.log(response);
-                var message = document.getElementById('message');
-                message.innerHTML = "Success"; 
-                message.style.color = "green";
-            })
-            .catch(error => {
-                 message.innerHTML = "Error"
-                message.style.color = "red";
-                console.error(error);
-            });
+      if (DevelopSummaryExcel == null || DevelopReport == null){
+        message.innerHTML = "Please specify which documents you want to generate.";
+        message.style.color = "red";
+        return;
+      }
+      formData.append("ExcelFile", fileInput.files[0]);
+      formData.append("ProjectID",ProjectID);
+      formData.append("ProjectName",ProjectName);
+      formData.append("ReportID",ReportID);
+      formData.append("ReportTitle",ReportTitle);
+      formData.append("Email",Email);
+      formData.append("DevelopSummaryExcel",DevelopSummaryExcel);
+      formData.append("DevelopReport",DevelopReport)
+      
+      axios({
+        method: 'post',
+        url: 'http://localhost:8010/GIRReport',
+        data: formData,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
+        },
+        })
+        .then(response => {
+            console.log(response);
+            var message = document.getElementById('message');
+            @* message.innerHTML = "Success"; 
+            message.style.color = "green"; *@
+        })
+        .catch(error => {
+              @* message.innerHTML = "Error"
+            message.style.color = "red"; *@
+            console.error(error);
+        });
 
     }
+    else{
+      message.innerHTML = "Invalid file type";
+      message.style.color = "red";
+    }
+  }
     catch(error){
       var message = document.getElementById("message");
       message.innerHTML = error;
       message.style.color = "red";
     }
-}
+
 }
 
 </script>
