@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic
+}
+
+.parameter{
+  display: inline-block;
+}
+.required {
+  color: red;
+  display: inline;
+}
+
+.children{
+  display: flex;
+  align-items: center;
+}

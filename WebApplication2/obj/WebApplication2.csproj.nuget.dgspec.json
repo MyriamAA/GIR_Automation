@@ -84,6 +84,10 @@
             "RestSharp": {
               "target": "Package",
               "version": "[108.0.3, )"
+            },
+            "jQuery.Validation": {
+              "target": "Package",
+              "version": "[1.19.5, )"
             }
           },
           "imports": [
