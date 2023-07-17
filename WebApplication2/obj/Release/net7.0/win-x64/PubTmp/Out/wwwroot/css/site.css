@@ -39,3 +39,40 @@ label.error {
   display: flex;
   align-items: center;
 }
+
+#formBody:before {
+content: ' ';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  opacity: 0.2;
+  background-image: url('DarBackground.png');
+  
+  background-position: 50% 100%;
+  background-size: cover;
+}
+	
+#jobForm{
+	position: relative;
+}
+	
+#background {
+	opacity: 0.1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	max-width: 100%;
+	
+}
+
+#downloadBtn {
+	border-radius: 2px;
+	border: 0.5px solid gray;
+}
+
+#buttonDiv{
+	margin-top: 5px;
+}

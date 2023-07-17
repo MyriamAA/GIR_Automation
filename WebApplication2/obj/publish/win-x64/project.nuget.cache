@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cbUiwel/E8b9z+4bmKFMRnKYKzgbPJ+6sij9BUpRz0YSpeJBzQQBrA4sH88ftOohlVH8dfWqfm97K8jdheLAIg==",
+  "dgSpecHash": "w7BVd3Q316Qk5cx/Qvny2TwtIjcop3n9Jb/d0oSeOg/qPm8mfsVOLBIR0NoAuc6eH7ScWWE59Hkogox25Igs0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mfabouatmeh\\Desktop\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "C:\\Users\\mfabouatmeh\\Desktop\\Notes\\New_GIR\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mfabouatmeh\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\mfabouatmeh\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -224,9 +224,9 @@
     "C:\\Users\\mfabouatmeh\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\mfabouatmeh\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\mfabouatmeh\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.0\\microsoft.netcore.app.runtime.win-x64.7.0.0.nupkg.sha512",
-    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.0\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.0.nupkg.sha512",
-    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.0\\microsoft.aspnetcore.app.runtime.win-x64.7.0.0.nupkg.sha512"
+    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.5\\microsoft.netcore.app.runtime.win-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.5\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\mfabouatmeh\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.5\\microsoft.aspnetcore.app.runtime.win-x64.7.0.5.nupkg.sha512"
   ],
   "logs": []
 }

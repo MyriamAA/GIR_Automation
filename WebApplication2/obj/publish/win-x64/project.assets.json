@@ -15710,11 +15710,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mfabouatmeh\\Desktop\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+      "projectUniqueName": "C:\\Users\\mfabouatmeh\\Desktop\\Notes\\New_GIR\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
       "projectName": "WebApplication2",
-      "projectPath": "C:\\Users\\mfabouatmeh\\Desktop\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+      "projectPath": "C:\\Users\\mfabouatmeh\\Desktop\\Notes\\New_GIR\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
       "packagesPath": "C:\\Users\\mfabouatmeh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mfabouatmeh\\Desktop\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\obj\\publish\\win-x64\\",
+      "outputPath": "C:\\Users\\mfabouatmeh\\Desktop\\Notes\\New_GIR\\GIR_Interface\\Visual Studio\\Backup_Final_GIR\\WebApplication2\\WebApplication2\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -15807,15 +15807,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[7.0.0, 7.0.0]"
+            "version": "[7.0.5, 7.0.5]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[7.0.0, 7.0.0]"
+            "version": "[7.0.5, 7.0.5]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[7.0.0, 7.0.0]"
+            "version": "[7.0.5, 7.0.5]"
           }
         ],
         "frameworkReferences": {
@@ -15826,7 +15826,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.105\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
